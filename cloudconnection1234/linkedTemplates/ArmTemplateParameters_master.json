@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "cloudconnection1234"
+		},
+		"LS_Databricksdev_accessToken": {
+			"value": ""
+		},
+		"LS_cloud178_connectionString": {
+			"value": ""
+		},
+		"LS_devstoragekpigen2_accountKey": {
+			"value": ""
+		},
+		"clientsql_connectionString": {
+			"value": ""
+		},
+		"myownsql_connectionString": {
+			"value": ""
+		},
+		"source_cloud1289_connectionString": {
+			"value": ""
+		},
+		"LS_Databricksdev_properties_typeProperties_existingClusterId": {
+			"value": "0618-073838-m05xh0xf"
+		},
+		"LS_devstoragekpigen2_properties_typeProperties_url": {
+			"value": "https://devstoragekpigen2.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
