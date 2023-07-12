@@ -1,0 +1,13 @@
+{
+	"name": "source_delta",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "clientsql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

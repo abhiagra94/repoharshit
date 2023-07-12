@@ -1,0 +1,106 @@
+{
+	"name": "pipeline_parameter",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DataLakeDataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"Containername": {
+								"value": "@pipeline().parameters.Inputcontainername",
+								"type": "Expression"
+							},
+							"Filename": {
+								"value": "@pipeline().parameters.Filename",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DataLakeDataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"Containername": {
+								"value": "@pipeline().parameters.outputcontainername",
+								"type": "Expression"
+							},
+							"Filename": {
+								"value": "@pipeline().parameters.Outputfilename",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"Inputcontainername": {
+				"type": "string",
+				"defaultValue": "input"
+			},
+			"outputcontainername": {
+				"type": "string",
+				"defaultValue": "output"
+			},
+			"Filename": {
+				"type": "string",
+				"defaultValue": "Department.csv"
+			},
+			"Outputfilename": {
+				"type": "string",
+				"defaultValue": "departmentx.csv"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-06-30T16:37:36Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

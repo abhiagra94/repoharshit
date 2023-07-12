@@ -1,0 +1,53 @@
+{
+	"name": "MasterPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "monitoringpipline",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Monitoring",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"sqlschema": "dbo",
+						"sqltablename": "metadatamonitoring"
+					}
+				}
+			},
+			{
+				"name": "pipelineparameter",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "monitoringpipline",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipeline_parameter",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Inputcontainername": "input",
+						"outputcontainername": "output",
+						"Filename": "Department.csv",
+						"Outputfilename": "output"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-06-30T17:32:14Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
